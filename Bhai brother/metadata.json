@@ -1,0 +1,5 @@
+{
+  "name": "Bhai AI",
+  "description": "A personal AI companion with voice interaction, mood detection, and multi-language support (Nepali, Hindi, Urdu, English, Bhojpuri).",
+  "requestFramePermissions": ["camera", "microphone"]
+}

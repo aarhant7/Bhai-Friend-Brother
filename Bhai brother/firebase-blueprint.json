@@ -1,0 +1,65 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "Personal details and preferences of the user.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "name": { "type": "string" },
+        "age": { "type": "number" },
+        "caste": { "type": "string" },
+        "language": { "type": "string", "enum": ["nepali", "hindi", "urdu", "english", "bhojpuri"] },
+        "country": { "type": "string" },
+        "joinReason": { "type": "string" },
+        "theme": { "type": "string", "enum": ["light", "dark"] },
+        "voicePreference": { "type": "string", "enum": ["male", "female"] },
+        "profileType": { "type": "string", "enum": ["robot", "human"] },
+        "photoURL": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "name", "language"]
+    },
+    "Chat": {
+      "title": "Chat Session",
+      "description": "Metadata for a chat session.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "lastUpdatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "title", "createdAt"]
+    },
+    "Message": {
+      "title": "Chat Message",
+      "description": "A single message in a chat session.",
+      "type": "object",
+      "properties": {
+        "chatId": { "type": "string" },
+        "userId": { "type": "string" },
+        "role": { "type": "string", "enum": ["user", "model"] },
+        "content": { "type": "string" },
+        "mood": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["chatId", "userId", "role", "content", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles."
+    },
+    "/chats/{chatId}": {
+      "schema": "Chat",
+      "description": "Chat sessions."
+    },
+    "/messages/{messageId}": {
+      "schema": "Message",
+      "description": "Individual messages."
+    }
+  }
+}
